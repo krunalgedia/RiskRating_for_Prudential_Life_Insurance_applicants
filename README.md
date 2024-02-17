@@ -43,9 +43,11 @@
 5. Create model pipelines for XGBoost and Logistic Regression, and optimize model hyperparameters using Bayesian optimization. Calculate Mathew's correlation coefficient as a metric and get feature importance using SHAPLEY score.
 ![Image 1](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/xgblr.png) 
 6. Make a simple feed forward neural network and using Logistic regression output as a skip connection to the last layer of DNN, make Combined Acturial Neural Network (CANN) [2]. CANN was initially introduced in context of a regression model.
-   ![Image 1](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/dnn.png) | ![Image 2](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/cann.png)
---- | --- 
-Opening page | Testing ... 
+
+![Image 1](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/dnn.png) | ![Image 2](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/cann.png)
+:-------------------------:|:-------------------------:
+Opening page | Testing ...
+
 8. 
 9.  
 
