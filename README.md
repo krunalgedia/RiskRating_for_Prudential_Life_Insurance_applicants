@@ -34,20 +34,26 @@
 2. Observing data especially target variable for its imbalance and high cardinality columns.
   ![Image](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/target.png)
    -----|
-   Target variable (Imbalanced risk rating classes) 
-4. Check columns with null values, remove them if they have more than 30% null values. If less, perform medium imputation in the ML model pipeline ensuring median values used to impute null values are .
-5. Create model pipelines for XGBoost and Logistic Regression, optimize parameters using Bayesian optimization.
-XGBoost model pipeline | Logistic Regression model pipeline
-:-------------------------:|:-------------------------: 
-![Image 1](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/xgb.png) | 
-![Image 2](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/lr.png)
+   Target variable (Imbalanced risk rating classes)
+![Image](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/bin_cardinality.png)
+   -----|
+   High Cardinality variables
+   
+4. Check columns with null values, remove them if they have more than 30% null values. If less than 30%, perform medium imputation in the ML model pipeline ensuring median values used to impute null values are taken only from train set (even during cross validation).
+5. Create model pipelines for XGBoost and Logistic Regression, and optimize model hyperparameters using Bayesian optimization. Calculate Mathew's correlation coefficient as a metric and get feature importance using SHAPLEY score.
+![Image 1](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/xgblr.png) 
+6. Make a simple feed forward neural network and using Logistic regression output as a skip connection to the last layer of DNN, make Combined Acturial Neural Network (CANN) [2]. CANN was initially introduced in context of a regression model.
+   ![Image 1](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/dnn.png) | ![Image 2](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/cann.png)
+--- | --- 
+Opening page | Testing ... 
+8. 
+9.  
 
 
 
-
-7. Preparing test set processing, including OCR of prediction documents using Pytesseract and getting the bounding box for all text in the test sample.
-8. Running predictions on the bounding boxes of Pytesseract.
-9. Update the database with relevant NER extracted from the model prediction on the annotated test sample.
+10. Preparing test set processing, including OCR of prediction documents using Pytesseract and getting the bounding box for all text in the test sample.
+11. Running predictions on the bounding boxes of Pytesseract.
+12. Update the database with relevant NER extracted from the model prediction on the annotated test sample.
 
 * notebooks/SBB_TrainTicketParser.ipynb contains the end-to-end code for Document parsing with database integration.
 * app.py contains the streamlit app code.
