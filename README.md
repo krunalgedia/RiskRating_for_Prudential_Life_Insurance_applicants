@@ -38,9 +38,9 @@
 4. Check columns with null values, remove them if they have more than 30% null values. If less, perform medium imputation in the ML model pipeline ensuring median values used to impute null values are .
 5. Create model pipelines for XGBoost and Logistic Regression, optimize parameters using Bayesian optimization.
    ![Image 1](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/xgb.png) |![Image 2](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/lr.png)
-   ---|---| 
+---|---| 
 XGBoost model pipeline | Logistic Regression model pipeline|
-
+---|---|
 
 7. Preparing test set processing, including OCR of prediction documents using Pytesseract and getting the bounding box for all text in the test sample.
 8. Running predictions on the bounding boxes of Pytesseract.
