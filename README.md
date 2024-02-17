@@ -37,20 +37,9 @@
    Target variable (Imbalanced risk rating classes) 
 4. Check columns with null values, remove them if they have more than 30% null values. If less, perform medium imputation in the ML model pipeline ensuring median values used to impute null values are .
 5. Create model pipelines for XGBoost and Logistic Regression, optimize parameters using Bayesian optimization.
-   ![Image 1](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/xgb.png) | ![Image 2](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/lr.png)
---- | --- 
-XGBoost model pipeline | Logistic Regression model pipeline
-
-<div style="display: flex;">
-    <div style="flex: 50%; padding: 5px;">
-        <img src="https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/xgb.png" alt="XGBoost model pipeline" width="400"/>
-        <p align="center">XGBoost model pipeline</p>
-    </div>
-    <div style="flex: 50%; padding: 5px;">
-        <img src="https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/lr.png" alt="Logistic Regression model pipeline" width="400"/>
-        <p align="center">Logistic Regression model pipeline</p>
-    </div>
-</div>
+   ![Image 1](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/xgb.png) |![Image 2](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/lr.png)
+   ---|---| 
+XGBoost model pipeline | Logistic Regression model pipeline|
 
 
 7. Preparing test set processing, including OCR of prediction documents using Pytesseract and getting the bounding box for all text in the test sample.
