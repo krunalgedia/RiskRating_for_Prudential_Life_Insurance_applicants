@@ -39,10 +39,23 @@
 5. Create model pipelines for XGBoost and Logistic Regression, optimize parameters using Bayesian optimization.
    ![Image 1](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/xgb.png) | ![Image 2](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/lr.png)
 --- | --- 
-XGBoost model pipeline | Logistic Regression model pipeline 
-6. Preparing test set processing, including OCR of prediction documents using Pytesseract and getting the bounding box for all text in the test sample.
-7. Running predictions on the bounding boxes of Pytesseract.
-8. Update the database with relevant NER extracted from the model prediction on the annotated test sample.
+XGBoost model pipeline | Logistic Regression model pipeline
+
+<div style="display: flex;">
+    <div style="flex: 50%; padding: 5px;">
+        <img src="https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/xgb.png" alt="XGBoost model pipeline" width="400"/>
+        <p align="center">XGBoost model pipeline</p>
+    </div>
+    <div style="flex: 50%; padding: 5px;">
+        <img src="https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/lr.png" alt="Logistic Regression model pipeline" width="400"/>
+        <p align="center">Logistic Regression model pipeline</p>
+    </div>
+</div>
+
+
+7. Preparing test set processing, including OCR of prediction documents using Pytesseract and getting the bounding box for all text in the test sample.
+8. Running predictions on the bounding boxes of Pytesseract.
+9. Update the database with relevant NER extracted from the model prediction on the annotated test sample.
 
 * notebooks/SBB_TrainTicketParser.ipynb contains the end-to-end code for Document parsing with database integration.
 * app.py contains the streamlit app code.
