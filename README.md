@@ -1,4 +1,4 @@
-# Risk Rating Model for Prudential Life Insurance applicants
+# Risk Rating Model for Prudential Life Insurance Applicants
 
 ## Table of Contents
 
@@ -23,12 +23,13 @@
 
 ## Data
 
-*The dataset is taken from Kaggle [1] uplaoded by Prudential
-*In this dataset, you are provided over a hundred variables describing attributes of life insurance applicants. The task is to predict the "Response" variable for each Id in the test set. "Response" is an ordinal measure of risk that has 8 levels.
+* The dataset is taken from Kaggle [1] which is uploaded by Prudential
+* In this dataset, you are provided with over a hundred variables describing attributes of life insurance applicants. The task is to predict the "Response" variable for each ID in the test set. "Response" is an ordinal measure of risk that has 8 levels.
 
 ## Workflow
 
 1. Importing data
+  
 2. Observing data especially target variable for its imbalance and high cardinality columns.
   ![Image](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/target.png)
    -----|
@@ -37,20 +38,23 @@
    -----|
    High Cardinality variables
    
-4. Check columns with null values, remove them if they have more than 30% null values. If less than 30%, perform medium imputation in the ML model pipeline ensuring median values used to impute null values are taken only from the train set (even during cross-validation).
-5. Make train test Stratified split. Compute class weights and use them in the later models to compute weighted loss while training.
-6. Create model pipelines for XGBoost and Logistic Regression, and optimize model hyperparameters using Bayesian optimization. Calculate Mathew's correlation coefficient (MCC) as a metric and get feature importance using the SHAPLEY score.
+3. Check columns with null values, remove them if they have more than 30% null values. If less than 30%, perform medium imputation in the ML model pipeline ensuring median values used to impute null values are taken only from the train set (even during cross-validation).
+
+4. Make train test Stratified split. Compute class weights and use them in the later models to compute weighted loss while training.
+
+5. Create model pipelines for XGBoost and Logistic Regression, and optimize model hyperparameters using Bayesian optimization. Calculate Mathew's correlation coefficient (MCC) as a metric and get feature importance using the SHAPLEY score.
 ![Image 1](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/xgblr.png) 
-7. Make a simple feed-forward neural network (DNN) and using Logistic regression output as a skip connection to the last layer of DNN, make Combined Actuarial Neural Network (CANN) [2]. CANN was initially introduced in the context of a regression model.
+
+6. Make a simple feed-forward neural network (DNN) and using Logistic regression output as a skip connection to the last layer of DNN, make Combined Actuarial Neural Network (CANN) [2]. CANN was initially introduced in the context of a regression model.
 
 ![Image 1](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/dnn.png) | ![Image 2](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/cann.png)
 :-------------------------:|:-------------------------:
 Feed-forward neural network DNN | Combined Actuarial Neural Network CANN (Logistic Regression as skip connection)
 
-8. Now compare the loss of the DNN and CANN model and also the MCC metric.
+7. Now compare the loss of the DNN and CANN model and also the MCC metric.
   
 
-* notebooks/SBB_TrainTicketParser.ipynb contains the end-to-end code for Document parsing with database integration.
+* notebooks/life_insurance.ipynb contains the end-to-end code for Document parsing with database integration.
 
 ## Results
 
