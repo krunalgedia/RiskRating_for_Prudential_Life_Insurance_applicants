@@ -6,9 +6,7 @@
 - [Data](#data)
 - [Workflow](#workflow)
 - [Results](#results)
-- [More ideas](#More-ideas)
 - [Dependencies](#dependencies)
-- [License](#license)
 - [Contact](#contact)
 - [References](#references)
 
@@ -72,21 +70,14 @@ Following is the loss and metric for Logistic regression, DNN, and CANN.
 ![Image](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/results.png)
 The important thing to note here is that CANN begins with a lower loss and better MCC metric than DNN. This is because of the skip connection which uses Logistic regression output. However, given the high non-linear nature of neural networks, eventually both models, DNN and CANN are bound to perform similarly over a few epochs.
 
-## More ideas
-
-Instead of using OCR from the UBIAI tool, it best is to use pyteserract or same OCR tool for train and test set. Further, with Document AI being developed at a rapid pace, it would be worthwhile to test newer multimodal models which hopefully either provide a new solution for not using OCR or inbuilt OCR since it is important to be consistent in preprocessing train and test set for best results.
-
-Also, train on at least >50 tickets, since this was just a small test case to see how well the model can work.
-
 ## Dependencies
 
 This project uses the following dependencies:
 
-- **Python:** 3.10.12/3.9.18 
-- **PyTorch:** 2.1.0+cu121/2.1.1+cpu
-- **Streamlit:** 1.28.2 
-
-- [SBB ticket parser model on Hugging Face](https://huggingface.co/KgModel/sbb_ticket_parser_LayoutLM)
+- **Python:** 3.10.12
+- **scikit-optimize** 0.9.0
+- **shap** 0.44.1
+- **tensorflow** 2.15.0
   
 ## Contact
 
@@ -95,8 +86,8 @@ Feel free to reach out if you have any questions, suggestions, or feedback relat
 - **LinkedIn:** [Krunal Gedia](https://www.linkedin.com/in/krunal-gedia-00188899/)
 
 ## References
-[1]: Data: [prudential-life-insurance-assessment](https://www.kaggle.com/c/prudential-life-insurance-assessment)
+[1]: [prudential-life-insurance-assessment data](https://www.kaggle.com/c/prudential-life-insurance-assessment)
 
-[2] CANN: [CANN](Wüthrich, Mario V., and Michael Merz, ‘EDITORIAL: YES, WE CANN!’, ASTIN Bulletin, 49 (2019), 1–3 <http://dx.doi.org/10.1017/asb.2018.42>)
+[2]: [CANN](Wüthrich, Mario V., and Michael Merz, ‘EDITORIAL: YES, WE CANN!’, ASTIN Bulletin, 49 (2019), 1–3 <http://dx.doi.org/10.1017/asb.2018.42>)
 
 
