@@ -39,48 +39,38 @@
    -----|
    High Cardinality variables
    
-4. Check columns with null values, remove them if they have more than 30% null values. If less than 30%, perform medium imputation in the ML model pipeline ensuring median values used to impute null values are taken only from train set (even during cross validation).
-5. Create model pipelines for XGBoost and Logistic Regression, and optimize model hyperparameters using Bayesian optimization. Calculate Mathew's correlation coefficient as a metric and get feature importance using SHAPLEY score.
+4. Check columns with null values, remove them if they have more than 30% null values. If less than 30%, perform medium imputation in the ML model pipeline ensuring median values used to impute null values are taken only from the train set (even during cross-validation).
+5. Make train test Stratified split. Compute class weights and use them in the later models to compute weighted loss while training.
+6. Create model pipelines for XGBoost and Logistic Regression, and optimize model hyperparameters using Bayesian optimization. Calculate Mathew's correlation coefficient (MCC) as a metric and get feature importance using the SHAPLEY score.
 ![Image 1](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/xgblr.png) 
-6. Make a simple feed forward neural network and using Logistic regression output as a skip connection to the last layer of DNN, make Combined Acturial Neural Network (CANN) [2]. CANN was initially introduced in context of a regression model.
+7. Make a simple feed-forward neural network (DNN) and using Logistic regression output as a skip connection to the last layer of DNN, make Combined Actuarial Neural Network (CANN) [2]. CANN was initially introduced in the context of a regression model.
 
 ![Image 1](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/dnn.png) | ![Image 2](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/cann.png)
 :-------------------------:|:-------------------------:
-Opening page | Testing ...
+Feed-forward neural network DNN | Combined Actuarial Neural Network CANN (Logistic Regression as skip connection)
 
-8. 
-9.  
-
-
-
-10. Preparing test set processing, including OCR of prediction documents using Pytesseract and getting the bounding box for all text in the test sample.
-11. Running predictions on the bounding boxes of Pytesseract.
-12. Update the database with relevant NER extracted from the model prediction on the annotated test sample.
+8. Now compare the loss of the DNN and CANN model and also the MCC metric.
+  
 
 * notebooks/SBB_TrainTicketParser.ipynb contains the end-to-end code for Document parsing with database integration.
-* app.py contains the streamlit app code.
 
 ## Results
 
-We fine-tuned using Facebook/Meta's LayoutLM (which utilizes BERT as the backbone and adds two new input embeddings: 2-D position embedding and image embedding) [3]. The model was imported from the Hugging Face library [4] with end-to-end code implemented in PyTorch. We leveraged the tokenizer provided by the library itself. For the test case, we perform the OCR using Pytesseract.
 
-With just 4 SBB train tickets we can achieve an average F1 score of 0.81.   
+Following is the result for optimized Logistic regression and XGBoost on the test dataset.
 
-| Epoch | Average Precision | Average Recall | Average F1 | Average Accuracy |
-|--------:|------------:|---------:|-----:|-----------:|
-|     145 |        0.89 |     0.77 | 0.82 |       0.9  |
-|     146 |        0.9  |     0.79 | 0.84 |       0.9  |
-|     147 |        0.86 |     0.77 | 0.81 |       0.89 |
-|     148 |        0.87 |     0.78 | 0.82 |       0.9  |
-|     149 |        0.86 |     0.77 | 0.81 |       0.89 |
+| Model | Mathew's Correlation Co-efficient | 
+|--------:|------------:|
+|  Logistic Regression | 0.30 |
+| XGBoost | 0.41 |
 
-The web application serves demo:
-![Image 1](https://github.com/krunalgedia/SBB_TrainTicketParser/blob/main/images_app/sample.gif) | ![Image 2](https://github.com/krunalgedia/SBB_TrainTicketParser/blob/main/images_app/test1.gif)
---- | --- 
-Opening page | Testing ... 
+The SHAP value for each of the models is
+![Image](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/shap.png)
+As expected, the important parameters are around the same for each of the models. We do expect some differences because Logistic regression is a linear regression model with the target variable as logit(probability) while XGBoost is a gradient-boosted decision tree-based non-linear algorithm.
 
-Once the user uploads the image, the document gets parsed and the information from the document gets updated in the relational database which can be used to verify the traveler's info and also to automate the travel cost-processing task.
-
+Following is the loss and metric for Logistic regression, DNN, and CANN.
+![Image](https://github.com/krunalgedia/RiskRating_for_Prudential_Life_Insurance_applicants/blob/main/images_README/results.png)
+The important thing to note here is that CANN begins with a lower loss and better MCC metric than DNN. This is because of the skip connection which uses Logistic regression output. However, given the high non-linear nature of neural networks, eventually both models, DNN and CANN are bound to perform similarly over a few epochs.
 
 ## More ideas
 
@@ -106,5 +96,7 @@ Feel free to reach out if you have any questions, suggestions, or feedback relat
 
 ## References
 [1]: Data: [prudential-life-insurance-assessment](https://www.kaggle.com/c/prudential-life-insurance-assessment)
+
+[2] CANN: [CANN](Wüthrich, Mario V., and Michael Merz, ‘EDITORIAL: YES, WE CANN!’, ASTIN Bulletin, 49 (2019), 1–3 <http://dx.doi.org/10.1017/asb.2018.42>)
 
 
